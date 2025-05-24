@@ -1,9 +1,10 @@
 from fastapi import FastAPI, Depends, HTTPException
 from sqlmodel import Session
 
-from crud import create_item, get_items, delete_item
-from database import init_db, get_session
-from models import Item
+from .crud import create_item, get_items, delete_item
+from .database import init_db, get_session
+from .models import Item
+
 
 app = FastAPI()
 

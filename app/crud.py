@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
 
-from models import Item
+from .models import Item
 
 
 def create_item(session: Session, item: Item) -> Item:
