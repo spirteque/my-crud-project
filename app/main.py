@@ -52,4 +52,5 @@ def read_items(session: Session = Depends(get_session)):
 
 @app.post("/api/persons/", response_model=Person)
 def add_item(person: Person, session: Session = Depends(get_session)):
+	print(person)
 	return create_person(session, person)
