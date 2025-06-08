@@ -37,3 +37,7 @@ def remove_item(item_id: int, session: Session = Depends(get_session)):
 	if not success:
 		raise HTTPException(status_code=404, detail="Item not found")
 	return {"ok": True}
+
+@app.get("/cool_items/", response_model=list[Item])
+def read_items(session: Session = Depends(get_session)):
+	return get_items(session)
