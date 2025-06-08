@@ -1,13 +1,13 @@
+from pathlib import Path
+
 from fastapi import FastAPI, Depends, HTTPException, Request
 from sqlmodel import Session
 from starlette.responses import HTMLResponse
 from starlette.templating import Jinja2Templates
 
-from .crud import create_item, get_items, delete_item
+from .crud import create_item, get_items, delete_item, create_person
 from .database import init_db, get_session
-from .models import Item
-
-from pathlib import Path
+from .models import Item, Person
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -44,6 +44,13 @@ def remove_item(item_id: int, session: Session = Depends(get_session)):
 		raise HTTPException(status_code=404, detail="Item not found")
 	return {"ok": True}
 
+
 @app.get("/api/cool_items/", response_model=list[Item])
 def read_items(session: Session = Depends(get_session)):
 	return get_items(session)
+
+
+@app.post("/api/persons/", response_model=Person)
+def add_item(person: Person, session: Session = Depends(get_session)):
+	print(person)
+	return create_person(session, person)

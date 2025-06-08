@@ -1,6 +1,6 @@
 from sqlmodel import Session, select
 
-from .models import Item
+from .models import Item, Person
 
 
 def create_item(session: Session, item: Item) -> Item:
@@ -21,3 +21,10 @@ def delete_item(session: Session, item_id: int) -> bool:
 		session.commit()
 		return True
 	return False
+
+
+def create_person(session: Session, person: Person) -> Person:
+	session.add(person)
+	session.commit()
+	session.refresh(person)
+	return person
