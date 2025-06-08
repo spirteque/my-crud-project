@@ -21,23 +21,23 @@ def home(request: Request):
 	return templates.TemplateResponse("index.html", {"request": request})
 
 
-@app.post("/items/", response_model=Item)
+@app.post("/api/items/", response_model=Item)
 def add_item(item: Item, session: Session = Depends(get_session)):
 	return create_item(session, item)
 
 
-@app.get("/items/", response_model=list[Item])
+@app.get("/api/items/", response_model=list[Item])
 def read_items(session: Session = Depends(get_session)):
 	return get_items(session)
 
 
-@app.delete("/items/{item_id}")
+@app.delete("/api/items/{item_id}")
 def remove_item(item_id: int, session: Session = Depends(get_session)):
 	success = delete_item(session, item_id)
 	if not success:
 		raise HTTPException(status_code=404, detail="Item not found")
 	return {"ok": True}
 
-@app.get("/cool_items/", response_model=list[Item])
+@app.get("/api/cool_items/", response_model=list[Item])
 def read_items(session: Session = Depends(get_session)):
 	return get_items(session)
