@@ -1,17 +1,24 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
 from sqlmodel import Session
+from starlette.responses import HTMLResponse
+from starlette.templating import Jinja2Templates
 
 from .crud import create_item, get_items, delete_item
 from .database import init_db, get_session
 from .models import Item
 
-
 app = FastAPI()
+templates = Jinja2Templates(directory="app/templates")
 
 
 @app.on_event("startup")
 def on_startup():
 	init_db()
+
+
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+	return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.post("/items/", response_model=Item)
