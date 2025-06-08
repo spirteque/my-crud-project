@@ -7,8 +7,12 @@ from .crud import create_item, get_items, delete_item
 from .database import init_db, get_session
 from .models import Item
 
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+
 app = FastAPI()
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
 
 @app.on_event("startup")
@@ -23,6 +27,8 @@ def home(request: Request):
 
 @app.post("/api/items/", response_model=Item)
 def add_item(item: Item, session: Session = Depends(get_session)):
+	if item.name == "forbidden":
+		raise HTTPException(status_code=409)
 	return create_item(session, item)
 
 
