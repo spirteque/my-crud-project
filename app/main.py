@@ -35,5 +35,5 @@ def read_items(session: Session = Depends(get_session)):
 def remove_item(item_id: int, session: Session = Depends(get_session)):
 	success = delete_item(session, item_id)
 	if not success:
-		raise HTTPException(status_code=404, detail="Item nto found")
+		raise HTTPException(status_code=404, detail="Item not found")
 	return {"ok": True}
