@@ -19,3 +19,18 @@ Wszystkie istotne zmiany w projekcie są dokumentowane w tym pliku.
 
 ### Naprawiono
 - Błędy importów i brakujący moduł przy uruchamianiu aplikacji
+
+## [2025-06-08] – 1.0.1
+
+### Naprawiono
+- Literówka w logach
+
+## [2025-06-08] – 1.1.0
+
+### Dodano
+- Endpoint GET "/cool_items"
+
+## [2025-06-08] – 2.0.0
+
+### Zmieniono
+- Przedroski endpointów na API
