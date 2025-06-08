@@ -8,6 +8,7 @@ Przykładowy projekt demonstrujący operacje CRUD (Create, Read, Update, Delete)
 - Endpoint `GET /items/{id}` do zwracania rekordów po ID
 - Endpoint `PUT /items/{id}` do edycji rekordów po ID
 - Endpoint `DELETE /items/{id}` do usuwania rekordów po ID
+- Endpoint `POST /persons/` umożliwiający dodawanie nowych osób
 
 ## Instalacja
 ```bash

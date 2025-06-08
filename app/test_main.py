@@ -12,3 +12,8 @@ def test_create_item():
 def test_throw_error_on_forbidden_item():
     response = client.post("/api/items/", json={"name": "forbidden", "description": "test"})
     assert response.status_code == 409
+
+
+def test_create_person():
+    response = client.post("/api/persons/", json={"name": "test", "surname": "test"})
+    assert response.status_code == 200
