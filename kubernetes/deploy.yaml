@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-crud-project
+  namespace: {{NAMESPACE}}
+  labels:
+    app: my-crud-project
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-crud-project
+  template:
+    metadata:
+      name: my-crud-project
+      labels:
+        app: my-crud-project
+    spec:
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: harbor-secret
+      containers:
+        - name: my-crud-project
+          image: registry.harbor/library/my-crud-project:{{VERSION}}
+          imagePullPolicy: IfNotPresent
+
+          
